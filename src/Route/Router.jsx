@@ -9,6 +9,7 @@ import Dashboard from '../Page/Dashboard/Dashboard';
 import Task from '../Page/Dashboard/Task/Task';
 import Testtask from '../Page/Dashboard/Task/Testtask';
 import TaskEdit from '../Page/Dashboard/Task/TaskEdit';
+import PrivateRoute from './PrivateRoute';
 
 const Router = createBrowserRouter([
   {
@@ -32,15 +33,27 @@ const Router = createBrowserRouter([
   },
   {
     path: '/dashboard',
-    element: <Dashboard></Dashboard>,
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
     children: [
       {
         path: 'task',
-        element: <Task></Task>,
+        element: (
+          <PrivateRoute>
+            <Task></Task>
+          </PrivateRoute>
+        ),
       },
       {
         path: 'task/edit/:id',
-        element: <TaskEdit></TaskEdit>,
+        element: (
+          <PrivateRoute>
+            <TaskEdit></TaskEdit>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/tasks/edit/${params.id}`),
       },

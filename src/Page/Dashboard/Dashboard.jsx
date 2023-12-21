@@ -9,23 +9,24 @@ const Dashboard = () => {
   const { user, logOut } = useAuth();
   const navigate = useNavigate();
   const [open, setOpen] = useState(true);
+  console.log(user.occupation);
   const handleLogOut = () => {
     logOut()
       .then(() => {
-        // Swal.fire({
-        //   icon: 'success',
-        //   title: 'User Logout successfully',
-        //   showConfirmButton: true,
-        // });
+        Swal.fire({
+          icon: 'success',
+          title: 'User Logout successfully',
+          showConfirmButton: true,
+        });
 
         navigate('/');
       })
       .catch(error => {
-        // Swal.fire({
-        //   icon: 'error',
-        //   title: 'Something went wrong',
-        //   showConfirmButton: true,
-        // });
+        Swal.fire({
+          icon: 'error',
+          title: 'Something went wrong',
+          showConfirmButton: true,
+        });
         return;
       });
   };
@@ -71,6 +72,7 @@ const Dashboard = () => {
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
             <div className="lg:w-10 w-7  rounded-full ">
               <img src={user.photoURL} />
+              <h3>{user.occupation}</h3>
             </div>
           </label>
         </div>

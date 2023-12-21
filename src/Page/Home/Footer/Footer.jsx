@@ -6,10 +6,14 @@ import {
 } from 'react-icons/ai';
 import { BsFacebook } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
+import GoogleLogin from '../../Login/GoogleLogin';
 
 const Footer = () => {
   return (
-    <div className="" style={{ backgroundColor: '#0a3d62' }}>
+    <div
+      className="bg-blue-900"
+      // style={{ backgroundColor: '#0a3d62' }}
+    >
       <div className="px-10 py-7 grid lg:grid-cols-2 grid-cols-1 ">
         <div>
           <h2 className=" text-xl lg:text-4xl my-5 text-white">
@@ -37,7 +41,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="grid text-white lg:grid-cols-2 grid-cols-1">
-          <div>
+          {/* <div>
             <h3 className="text-xl font-bold my-5 border-b-2 w-2/3 py-3">
               Information
             </h3>
@@ -53,17 +57,17 @@ const Footer = () => {
                 <h3>Service</h3>
               </Link>
             </div>
-          </div>
+          </div> */}
           <div>
             <h3 className="text-xl font-bold my-5 border-b-2 w-2/3 py-3">
               Help
             </h3>
             <div className="text-white flex">
               <h3 className="flex gap-4 text-2xl">
-                {' '}
-                <BsFacebook></BsFacebook>
-                <AiOutlineTwitter></AiOutlineTwitter>
-                <AiOutlineInstagram></AiOutlineInstagram>
+                <GoogleLogin>{/* <BsFacebook></BsFacebook> */}</GoogleLogin>
+
+                {/* <AiOutlineTwitter></AiOutlineTwitter>
+                <AiOutlineInstagram></AiOutlineInstagram> */}
               </h3>
             </div>
           </div>

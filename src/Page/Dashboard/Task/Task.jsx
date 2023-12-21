@@ -210,7 +210,7 @@ const Task = () => {
             </div>
           </form>
         </div>
-        <div className=" grid grid-cols-3">
+        <div className=" grid lg:grid-cols-3 grid-cols-1">
           <div>
             <h3 className="text-2xl font-semibold">To Do List</h3>
             {/* <DragDropContext onDragEnd={handleDragEnd}>

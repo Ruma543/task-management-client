@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import useAuth from '../../../Hook/useAuth';
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
@@ -8,20 +9,20 @@ const Navbar = () => {
   const handleLogOut = () => {
     logOut()
       .then(() => {
-        // Swal.fire({
-        //   icon: 'success',
-        //   title: 'User Logout successfully',
-        //   showConfirmButton: true,
-        // });
+        Swal.fire({
+          icon: 'success',
+          title: 'User Logout successfully',
+          showConfirmButton: true,
+        });
 
         navigate('/');
       })
       .catch(error => {
-        // Swal.fire({
-        //   icon: 'error',
-        //   title: 'Something went wrong',
-        //   showConfirmButton: true,
-        // });
+        Swal.fire({
+          icon: 'error',
+          title: 'Something went wrong',
+          showConfirmButton: true,
+        });
         return;
       });
   };
@@ -34,7 +35,7 @@ const Navbar = () => {
             isActive
               ? 'text-red-700 underline lg:text-white font-semibold '
               : isPending
-              ? 'pending'
+              ? 'pending lg:text-green'
               : ''
           }
         >
@@ -51,7 +52,7 @@ const Navbar = () => {
                 isActive
                   ? 'text-red-700 underline lg:text-white font-semibold '
                   : isPending
-                  ? 'pending'
+                  ? 'pending lg:text-green-300'
                   : ''
               }
             >
@@ -101,6 +102,7 @@ const Navbar = () => {
             ? 'transition duration-150 ease-in-out h-20 lg:px-6 bg-blue-300 flex navbar   '
             : ' h-20 lg:bg-orange-400 bg-orange-200 flex navbar lg:px-6 '
         }
+        style={{ backgroundColor: '#0a3d62' }}
       >
         <div className="navbar-start">
           <div className="dropdown">
@@ -148,7 +150,9 @@ const Navbar = () => {
                       <img src={user.photoURL} />
                     </div>
                   </label>
-                  <p className="text-xs w-full ">{user.displayName}</p>
+                  <p className="text-xs w-full text-white">
+                    {user.displayName}
+                  </p>
                 </div>
                 <button
                   onClick={handleLogOut}

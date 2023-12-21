@@ -8,6 +8,7 @@ import Registration from '../Page/Registration/Registration';
 import Dashboard from '../Page/Dashboard/Dashboard';
 import Task from '../Page/Dashboard/Task/Task';
 import Testtask from '../Page/Dashboard/Task/Testtask';
+import TaskEdit from '../Page/Dashboard/Task/TaskEdit';
 
 const Router = createBrowserRouter([
   {
@@ -38,8 +39,10 @@ const Router = createBrowserRouter([
         element: <Task></Task>,
       },
       {
-        path: 'tasksssss',
-        element: <Testtask></Testtask>,
+        path: 'task/edit/:id',
+        element: <TaskEdit></TaskEdit>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/tasks/edit/${params.id}`),
       },
     ],
   },

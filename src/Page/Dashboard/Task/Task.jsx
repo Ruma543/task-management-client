@@ -11,52 +11,38 @@ import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../../Hook/useAuth';
 import { CiEdit } from 'react-icons/ci';
 import { MdDelete } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
 const Task = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [tasks, setTasks] = useState([]);
   const { user } = useAuth();
   // step-2: dnd
-  const handleDragEnd = result => {
-    if (!result.destination) return;
-
-    const { source, destination } = result;
-    const updatedTasks = [...tasks];
-    const movedTask = updatedTasks.splice(source.index, 1)[0];
-    movedTask.status = 'To-do';
-
-    if (destination.droppableId === 'ongoing') {
-      movedTask.status = 'Ongoing';
-    } else if (destination.droppableId === 'complete') {
-      movedTask.status = 'Complete';
-    }
-
-    updatedTasks.splice(destination.index, 0, movedTask);
-    setTasks(updatedTasks);
-  };
   // const handleDragEnd = result => {
   //   if (!result.destination) return;
 
   //   const { source, destination } = result;
-  // };
-  // step-3
-  // const onDrop = (item, monitor) => {
-  //   console.log(item);
-  // };
+  //   const updatedTasks = [...tasks];
+  //   const movedTask = updatedTasks.splice(source.index, 1)[0];
+  //   movedTask.status = 'To-do';
 
-  // step-4
-  // const [{ isDragging }, drag] = useDrag({
-  //   type,
-  //   collect: monitor => ({
-  //     isDragging: !!monitor.isDragging(),
-  //   }),
-  // });
+  //   if (destination.droppableId === 'ongoing') {
+  //     movedTask.status = 'Ongoing';
+  //   } else if (destination.droppableId === 'complete') {
+  //     movedTask.status = 'Complete';
+  //   }
 
-  // step-5
-  // const [, drop] = useDrop({
-  //   accept: type,
-  //   drop: onDrop,
-  // });
+  //   updatedTasks.splice(destination.index, 0, movedTask);
+  //   setTasks(updatedTasks);
+  // };
+  const handleDragEnd = result => {
+    const { source, destination, draggableId } = result;
+
+    if (!result.destination) return;
+
+    console.log(draggableId);
+    console.log(result.droppableId);
+  };
 
   const {
     register,
@@ -101,9 +87,9 @@ const Task = () => {
   });
   console.log(taskData);
 
-  const handleEdit = _id => {
-    console.log(_id);
-  };
+  // const handleEdit = _id => {
+  //   console.log(_id);
+  // };
   const handleDelete = _id => {
     console.log(_id);
     Swal.fire({
@@ -137,7 +123,7 @@ const Task = () => {
       </h3>
       {/* <DragDropContext onDragEnd={handleDragEnd}> add korchi */}
       {/* */}
-      <div className="lg:flex- flex-col">
+      <div className="lg:flex flex-col">
         <div className="">
           <form
             className="card-body flex lg:flex-row rounded-lg"
@@ -263,9 +249,9 @@ const Task = () => {
                   <div {...provided.droppableProps} ref={provided.innerRef}>
                     {taskData.map((item, index) => (
                       <Draggable
-                        key={item._id}
-                        // draggableId={item._id}
-                        draggableId="todo"
+                        key={item?._id}
+                        draggableId={item?._id}
+                        // draggableId="todo"
                         index={index}
                       >
                         {provided => (
@@ -294,12 +280,17 @@ const Task = () => {
                                   </h3>
                                 </div>
                                 <div className=" flex gap-4">
-                                  <button
+                                  <Link to={`edit/${item._id}`}>
+                                    <button className="btn ">
+                                      <CiEdit />
+                                    </button>
+                                  </Link>
+                                  {/* <button
                                     onClick={() => handleEdit(item._id)}
                                     className="btn "
                                   >
                                     <CiEdit />
-                                  </button>
+                                  </button> */}
                                   <button
                                     onClick={() => handleDelete(item._id)}
                                     className="btn"

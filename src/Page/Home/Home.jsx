@@ -1,6 +1,7 @@
 import React from 'react';
 import useAuth from '../../Hook/useAuth';
 import Banner from './Banner/Banner';
+import Footer from './Footer/Footer';
 
 const Home = () => {
   const { user } = useAuth();
@@ -8,6 +9,7 @@ const Home = () => {
   return (
     <div>
       <Banner></Banner>
+      <Footer></Footer>
     </div>
   );
 };

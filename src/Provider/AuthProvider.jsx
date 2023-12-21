@@ -9,6 +9,7 @@ import {
   signOut,
   updateProfile,
 } from 'firebase/auth';
+import axios from 'axios';
 const googleProvider = new GoogleAuthProvider();
 export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
@@ -41,28 +42,28 @@ const AuthProvider = ({ children }) => {
     const unSubscribe = onAuthStateChanged(auth, currentUser => {
       setUser(currentUser);
       setLoading(false);
-      //  if (currentUser) {
-      //    const userInfo = { email: currentUser.email };
-      //    axios
-      //      .post(
-      //        'https://employee-management-server-tau.vercel.app/jwt',
-      //        userInfo
-      //      )
-      //      .then(res => {
-      //        if (res.data.token) {
-      //          localStorage.setItem('access-token', res.data.token);
-      //        }
-      //      });
-      //  } else {
-      //    localStorage.removeItem('access-token');
-      //  }
-      // setLoading(false);
+      if (currentUser) {
+        const userInfo = { email: currentUser.email };
+        axios
+          .post(
+            'https://employee-management-server-tau.vercel.app/jwt',
+            userInfo
+          )
+          .then(res => {
+            if (res.data.token) {
+              localStorage.setItem('access-token', res.data.token);
+            }
+          });
+      } else {
+        localStorage.removeItem('access-token');
+      }
+      setLoading(false);
     });
     return () => {
       return unSubscribe();
     };
     //  axios dite hove dependenci te must
-  }, []);
+  }, [axios]);
   // const user = 'ruma';
   const info = {
     user,

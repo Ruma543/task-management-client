@@ -5,6 +5,9 @@ import ErrorPage from '../Page/ErrorPage/ErrorPage';
 import Home from '../Page/Home/Home';
 import Login from '../Page/Login/Login';
 import Registration from '../Page/Registration/Registration';
+import Dashboard from '../Page/Dashboard/Dashboard';
+import Task from '../Page/Dashboard/Task/Task';
+import Testtask from '../Page/Dashboard/Task/Testtask';
 
 const Router = createBrowserRouter([
   {
@@ -25,6 +28,20 @@ const Router = createBrowserRouter([
   {
     path: '/register',
     element: <Registration></Registration>,
+  },
+  {
+    path: '/dashboard',
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        path: 'task',
+        element: <Task></Task>,
+      },
+      {
+        path: 'tasksssss',
+        element: <Testtask></Testtask>,
+      },
+    ],
   },
 ]);
 

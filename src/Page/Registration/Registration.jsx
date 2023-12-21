@@ -3,12 +3,14 @@ import useAuth from '../../Hook/useAuth';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import useAxiosPublic from '../../Hook/useAxiosPublic';
 
 // const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_API;
 // const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 // https://api.imgbb.com/1/upload
 const Registration = () => {
   const { createUser, profileUpdate } = useAuth();
+  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const {
     register,
@@ -31,16 +33,16 @@ const Registration = () => {
         const loggedUser = result.user;
         console.log(loggedUser);
         // console.log(imgRes.data.data.display_url);
-        profileUpdate(data.name, data.display_url).then(() => {
+        profileUpdate(data.name, data.image).then(() => {
           const userInfo = {
             name: data.name,
             email: data.email,
             // image: imgRes.data.data.display_url,
-            image: data.display_url,
+            image: data.image,
             occupation: data.occupation,
           };
           console.log(userInfo);
-          axios.post('http://localhost:5000/users', userInfo).then(res => {
+          axiosPublic.post('/users', userInfo).then(res => {
             if (res.data.insertedId) {
               reset();
               return alert('added successfuly');

@@ -60,7 +60,7 @@ const Footer = () => {
           </div> */}
           <div>
             <h3 className="text-xl font-bold my-5 border-b-2 w-2/3 py-3">
-              Help
+              Quick Access
             </h3>
             <div className="text-white flex">
               <h3 className="flex gap-4 text-2xl">

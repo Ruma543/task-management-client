@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../Hook/useAuth';
 import { useForm } from 'react-hook-form';
 import GoogleLogin from './GoogleLogin';
+import Swal from 'sweetalert2';
+import img from '../../assets/login.jpg';
 
 const Login = () => {
+  const [isHovered, setIsHovered] = useState(false);
   const {
     register,
     handleSubmit,
@@ -21,44 +24,51 @@ const Login = () => {
         const user = result.user;
         console.log(user);
         reset();
-        // Swal.fire({
-        //   position: 'middle-end',
-        //   icon: 'success',
-        //   title: 'user login successfully',
-        //   showConfirmButton: false,
-        //   timer: 1500,
-        // });
+        Swal.fire({
+          position: 'middle-end',
+          icon: 'success',
+          title: 'user login successfully',
+          showConfirmButton: false,
+          timer: 1500,
+        });
 
         navigate(location.state ? location.state : '/');
       })
       .catch(error => {
-        // Swal.fire({
-        //   position: 'middle-end',
-        //   icon: 'error',
-        //   title: 'Please login with verified password',
-        //   showConfirmButton: false,
-        //   timer: 1500,
-        // });
+        Swal.fire({
+          position: 'middle-end',
+          icon: 'error',
+          title: 'Please login with verified password',
+          showConfirmButton: false,
+          timer: 1500,
+        });
       });
     console.log(data);
   };
   return (
     <div>
-      <h3>login</h3>
-      <Link to="/register">
-        <button className="btn btn-primary">Registration</button>
-      </Link>
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row-reverse">
-          <div className="text-center lg:text-left">
-            <h1 className="text-5xl font-bold">Login now!</h1>
+          <div
+            style={{
+              // backgroundImage: `url(${img})`,
+              backgroundSize: 'cover',
+              borderRadius: '50%',
+              overflow: 'hidden',
+              transition: 'transform 0.3s ease-in-out',
+              transform: isHovered ? 'scale(.9)' : 'scale(.7)',
+            }}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            className="text-center lg:text-left "
+          >
+            <img src={img} alt="" />
           </div>
-          <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
-              <p className=" text-lg">
+          <div className="card  bg-blue-500 shrink-0 w-full max-w-sm shadow-2xl ">
+            <form className="card-body " onSubmit={handleSubmit(onSubmit)}>
+              <p className=" text-lg text-white">
                 New in our Website? please
-                <Link to="/register" className="text-blue-700">
-                  {' '}
+                <Link to="/register" className="text-white underline px-3">
                   Register
                 </Link>
               </p>
@@ -90,7 +100,10 @@ const Login = () => {
                 </label> */}
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary" type="submit">
+                <button
+                  className="btn btn-primary hover:bg-blue-700"
+                  type="submit"
+                >
                   Login
                 </button>
               </div>

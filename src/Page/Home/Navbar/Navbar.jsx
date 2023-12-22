@@ -154,12 +154,12 @@ const Navbar = () => {
                     {user.displayName}
                   </p>
                 </div>
-                <button
+                {/* <button
                   onClick={handleLogOut}
                   className="lg:px-4 lg:py-3 py-1 px-2 bg-red-600 text-white"
                 >
                   Sign Out
-                </button>
+                </button> */}
               </div>
             </div>
           ) : (

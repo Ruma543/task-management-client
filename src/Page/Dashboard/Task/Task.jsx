@@ -16,7 +16,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 const Task = () => {
   const [startDate, setStartDate] = useState(new Date());
-  const [tasks, setTasks] = useState([]);
+
   const { user } = useAuth();
   // step-2: dnd
   // const handleDragEnd = result => {
@@ -41,7 +41,16 @@ const Task = () => {
 
     if (!result.destination) return;
 
-    console.log(draggableId);
+    // step-1
+    const updatedTasks = [...tasks];
+    const movedTask = updatedTasks.find(task => task._id === draggableId);
+    updatedTasks.splice(source.index, 1);
+    movedTask.status = destination.droppableId;
+    updatedTasks.splice(destination.index, 0, movedTask);
+
+    setTasks(updatedTasks);
+
+    console.log(result.draggableId);
     console.log(result.droppableId);
   };
 
@@ -81,7 +90,8 @@ const Task = () => {
     },
   });
   console.log(taskData);
-
+  const [tasks, setTasks] = useState(taskData);
+  console.log(tasks);
   // const handleEdit = _id => {
   //   console.log(_id);
   // };
@@ -111,10 +121,13 @@ const Task = () => {
       }
     });
   };
+  const handleOngoing = _id => {
+    console.log(_id);
+  };
   return (
     <div className="w-11/12 mx-auto">
       <h3 className="lg:text-3xl text-xl font-semibold">
-        Your submitted work is {taskData.length}
+        Your submitted Task is {taskData.length}
       </h3>
       {/* <DragDropContext onDragEnd={handleDragEnd}> add korchi */}
       {/* */}
@@ -268,8 +281,17 @@ const Task = () => {
                               </div>
                               <div className="grid grid-cols-2">
                                 <div>
-                                  {' '}
-                                  <h3 className="text-white">{item.status}</h3>
+                                  {item.status !== 'to-do' ? (
+                                    <button
+                                      onClick={() => handleOngoing(item._id)}
+                                      className="btn"
+                                    >
+                                      ongoing
+                                    </button>
+                                  ) : (
+                                    ''
+                                  )}
+                                  {/* <h3 className="text-white">{item.status}</h3> */}
                                   <h3 className="text-white">
                                     {item.deadlines}
                                   </h3>
@@ -280,12 +302,7 @@ const Task = () => {
                                       <CiEdit />
                                     </button>
                                   </Link>
-                                  {/* <button
-                                    onClick={() => handleEdit(item._id)}
-                                    className="btn "
-                                  >
-                                    <CiEdit />
-                                  </button> */}
+
                                   <button
                                     onClick={() => handleDelete(item._id)}
                                     className="btn"

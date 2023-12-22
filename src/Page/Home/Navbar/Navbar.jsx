@@ -42,6 +42,20 @@ const Navbar = () => {
           Home
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/about"
+          className={({ isActive, isPending }) =>
+            isActive
+              ? 'text-red-700 underline lg:text-white font-semibold '
+              : isPending
+              ? 'pending lg:text-green'
+              : ''
+          }
+        >
+          About Us
+        </NavLink>
+      </li>
 
       {user && (
         <>
@@ -64,7 +78,7 @@ const Navbar = () => {
 
       <li>
         <NavLink
-          to="/contactUs"
+          to="/contact"
           className={({ isActive, isPending }) =>
             isActive
               ? 'text-red-700 underline lg:text-white font-semibold '

@@ -12,6 +12,7 @@ import useAuth from '../../../Hook/useAuth';
 import { CiEdit } from 'react-icons/ci';
 import { MdDelete } from 'react-icons/md';
 import { Link } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Task = () => {
   const [startDate, setStartDate] = useState(new Date());
@@ -66,13 +67,7 @@ const Task = () => {
       reset();
       refetch();
       if (res.data.insertedId) {
-        Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'work add successfully',
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        toast.success('Task added Successfully!');
       }
     });
     // console.log('clicked');

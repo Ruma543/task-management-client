@@ -8,11 +8,11 @@ const Banner = () => {
     AOS.init();
   }, []);
   return (
-    <div className="lg:h-[70vh] mx-auto lg:w-full grid lg:grid-cols-2 grid-cols-1 bg-blue-900">
+    <div className="lg:h-[70vh] h-full mx-auto lg:w-full grid lg:grid-cols-2 grid-cols-1 bg-blue-900">
       <div className="flex flex-col items-center justify-center">
         {' '}
         <h3
-          data-aos="fade-up-left"
+          data-aos="fade-up"
           data-aos-offset="200"
           data-aos-easing="ease-in-sine"
           data-aos-duration="1000"

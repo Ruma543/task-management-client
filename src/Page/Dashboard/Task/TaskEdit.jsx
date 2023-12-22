@@ -5,6 +5,7 @@ import useAxiosSecure from '../../../Hook/useAxiosSecure';
 import Swal from 'sweetalert2';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import toast from 'react-hot-toast';
 
 const TaskEdit = () => {
   // const [editTask, setEditTask] = useState({});
@@ -34,11 +35,7 @@ const TaskEdit = () => {
       .then(res => {
         console.log(res.data);
         if (res?.data?.modifiedCount > 0) {
-          Swal.fire({
-            icon: 'success',
-            title: ' Date update successfully',
-            showConfirmButton: true,
-          });
+          toast.success('Task Updated Successfully!');
           navigate('/dashboard/task');
         }
       })

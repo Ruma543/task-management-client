@@ -48,7 +48,7 @@ const Login = () => {
   return (
     <div>
       <div className="hero min-h-screen bg-base-200">
-        <div className="hero-content flex-col lg:flex-row-reverse">
+        <div className="hero-content flex-col lg:flex-row">
           <div
             style={{
               // backgroundImage: `url(${img})`,

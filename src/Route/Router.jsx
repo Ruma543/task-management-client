@@ -10,6 +10,8 @@ import Task from '../Page/Dashboard/Task/Task';
 import Testtask from '../Page/Dashboard/Task/Testtask';
 import TaskEdit from '../Page/Dashboard/Task/TaskEdit';
 import PrivateRoute from './PrivateRoute';
+import AboutUs from '../Page/AboutUs/AboutUs';
+import ContactUs from '../Page/ContactUs/ContactUs';
 
 const Router = createBrowserRouter([
   {
@@ -20,6 +22,14 @@ const Router = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>,
+      },
+      {
+        path: '/about',
+        element: <AboutUs></AboutUs>,
+      },
+      {
+        path: '/contact',
+        element: <ContactUs></ContactUs>,
       },
     ],
   },

@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import useAxiosPublic from '../../Hook/useAxiosPublic';
+import Swal from 'sweetalert2';
 
 // const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_API;
 // const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -45,90 +46,47 @@ const Registration = () => {
           axiosPublic.post('/users', userInfo).then(res => {
             if (res.data.insertedId) {
               reset();
-              return alert('added successfuly');
-              // Swal.fire({
-              //   position: 'middle-end',
-              //   icon: 'success',
-              //   title: 'Employee add successfully',
-              //   showConfirmButton: false,
-              //   timer: 1500,
-              // });
-              // navigate('/');
+              // return alert('added successfuly');
+              Swal.fire({
+                position: 'middle-end',
+                icon: 'success',
+                title: 'User add successfully',
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              navigate('/');
             }
           });
         });
       })
       .catch(error => {
         console.log(error);
-        // Swal.fire({
-        //   icon: 'error',
-        //   title: 'Employee Information  is missing!',
-        //   showConfirmButton: true,
-        // });
+        Swal.fire({
+          icon: 'error',
+          title: 'user Information  is missing!',
+          showConfirmButton: true,
+        });
       });
-
-    // if (imgRes.data.success) {
-    //   createUser(data.email, data.password)
-    //     .then(result => {
-    //       const loggedUser = result.user;
-    //       console.log(loggedUser);
-    //       console.log(imgRes.data.data.display_url);
-    //       profileUpdate(data.name, imgRes.data.data.display_url).then(() => {
-    //         const userInfo = {
-    //           name: data.name,
-    //           email: data.email,
-    //           image: imgRes.data.data.display_url,
-    //           occupation: data.occupation,
-    //         };
-    //         console.log(userInfo);
-    //         // axios
-    //         //   .post(
-    //         //     'https://employee-management-server-tau.vercel.app/employees',
-    //         //     userInfo
-    //         //   )
-    //         // .then(res => {
-    //         //   if (res.data.insertedId) {
-    //         //     reset();
-    //         //     return alert('added successfuly');
-    //         //     Swal.fire({
-    //         //       position: 'middle-end',
-    //         //       icon: 'success',
-    //         //       title: 'Employee add successfully',
-    //         //       showConfirmButton: false,
-    //         //       timer: 1500,
-    //         //     });
-    //         //     navigate('/');
-    //         //   }
-    //         // });
-    //       });
-    //     })
-    //     .catch(error => {
-    //       console.log(error);
-    //       // Swal.fire({
-    //       //   icon: 'error',
-    //       //   title: 'Employee Information  is missing!',
-    //       //   showConfirmButton: true,
-    //       // });
-    //     });
-    // }
   };
   return (
-    <div className="w-1/3 mx-auto">
+    <div className="w-2/3 mx-auto my-5">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="px-5 py-6 rounded-lg text-white  bg-blue-500"
         // style={{ backgroundColor: '#0a3d62' }}
       >
-        <p className="text-center text">
+        <p className="text-center text-2xl font-semibold">
           Already Register Please{' '}
-          <Link to="/login" className="text-blue-400">
+          <Link to="/login" className="text-white underline">
             Login
           </Link>{' '}
         </p>
-        <div className="grid lg:grid-cols-1 grid-cols-1 gap-4 items-center ">
+        <div className="grid lg:grid-cols-2 grid-cols-1 gap-4 items-center ">
           <div className="form-control w-full  space-y-3">
             <label className="label">
-              <span className="label-text">User Name</span>
+              <span className="label-text font-semibold text-lg">
+                User Name
+              </span>
             </label>
             <input
               type="text"
@@ -143,7 +101,9 @@ const Registration = () => {
           </div>
           <div className="form-control w-full  space-y-3">
             <label className="label">
-              <span className="label-text">User Email</span>
+              <span className="label-text font-semibold text-lg">
+                User Email
+              </span>
             </label>
             <input
               type="email"
@@ -158,10 +118,12 @@ const Registration = () => {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-1 grid-cols-1 gap-4 items-center ">
+        <div className="grid lg:grid-cols-2 grid-cols-1 gap-4 items-center ">
           <div className="form-control w-full  space-y-3">
             <label className="label">
-              <span className="label-text">User Occupation</span>
+              <span className="label-text font-semibold text-lg">
+                User Occupation
+              </span>
             </label>
             <select
               {...register('occupation', { required: true })}
@@ -180,36 +142,9 @@ const Registration = () => {
               <span className="text-red-400">Occupation is required</span>
             )}
           </div>
-        </div>
-        <div className="grid lg:grid-cols-1 grid-cols-1 gap-4 items-center ">
-          {/* <div className="form-control w-full mt-4">
-            <input
-              {...register('image', { required: true })}
-              type="file"
-              className="file-input bg-green-500 w-full max-w-xs"
-            />
-            {errors.image && (
-              <span className="text-red-400">Image upload is required</span>
-            )}
-          </div> */}
           <div className="form-control w-full  space-y-3">
             <label className="label">
-              <span className="label-text">Image</span>
-            </label>
-            <input
-              type="text"
-              placeholder="image"
-              {...register('image', { required: true })}
-              required
-              className=" w-full px-6 py-3 rounded-lg  text-black outline-none"
-            />
-            {errors.image && (
-              <span className="text-red-400">Image is required</span>
-            )}
-          </div>
-          <div className="form-control w-full  space-y-3">
-            <label className="label">
-              <span className="label-text">Password</span>
+              <span className="label-text font-semibold text-lg">Password</span>
             </label>
             <input
               type="password"
@@ -239,16 +174,32 @@ const Registration = () => {
             )}
           </div>
         </div>
+        <div className="grid lg:grid-cols-1 grid-cols-1 gap-4 items-center ">
+          <div className="form-control w-full  space-y-3">
+            <label className="label">
+              <span className="label-text font-semibold text-lg">Image</span>
+            </label>
+            <input
+              type="text"
+              placeholder="image"
+              {...register('image', { required: true })}
+              required
+              className=" w-full px-6 py-3 rounded-lg  text-black outline-none"
+            />
+            {errors.image && (
+              <span className="text-red-400">Image is required</span>
+            )}
+          </div>
+        </div>
         <div className="flex justify-center">
           {' '}
           <button
-            className="bg-green-500 my-4 text-center hover:bg-green-800"
+            className="bg-blue-900 my-4 px-3 py-2 rounded-lg text-center text-white hover:bg-blue-700"
             type="submit"
           >
             Registration
           </button>
         </div>
-        {/* <button className=" px-3 py-2 my-4 text-white bg-green-500 hover:bg-green-800"></button> */}
       </form>
     </div>
   );

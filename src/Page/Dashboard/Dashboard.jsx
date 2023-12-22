@@ -4,6 +4,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa6';
 import { FcApproval } from 'react-icons/fc';
 import UserMenu from '../../Menu/UserMenu';
+import Swal from 'sweetalert2';
 
 const Dashboard = () => {
   const { user, logOut } = useAuth();

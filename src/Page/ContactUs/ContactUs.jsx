@@ -12,6 +12,7 @@ import {
   FaVoicemail,
 } from 'react-icons/fa6';
 import Swal from 'sweetalert2';
+import toast from 'react-hot-toast';
 const ContactUs = () => {
   const form = useRef();
   const sendEmail = e => {
@@ -27,14 +28,15 @@ const ContactUs = () => {
       .then(
         result => {
           console.log(result.text);
+          toast.success('message send Successfully!');
           // console.log('message sent');
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'message send successfully',
-            showConfirmButton: false,
-            timer: 1500,
-          });
+          // Swal.fire({
+          //   position: 'top-end',
+          //   icon: 'success',
+          //   title: 'message send successfully',
+          //   showConfirmButton: false,
+          //   timer: 1500,
+          // });
         },
         error => {
           console.log(error.text);

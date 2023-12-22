@@ -45,10 +45,7 @@ const AuthProvider = ({ children }) => {
       if (currentUser) {
         const userInfo = { email: currentUser.email };
         axios
-          .post(
-            'https://employee-management-server-tau.vercel.app/jwt',
-            userInfo
-          )
+          .post('https://task-management-server-ochre.vercel.app/jwt', userInfo)
           .then(res => {
             if (res.data.token) {
               localStorage.setItem('access-token', res.data.token);

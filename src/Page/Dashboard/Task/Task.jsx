@@ -121,9 +121,9 @@ const Task = () => {
       }
     });
   };
-  const handleOngoing = _id => {
-    console.log(_id);
-  };
+  // const handleOngoing = _id => {
+  //   console.log(_id);
+  // };
   return (
     <div className="w-11/12 mx-auto">
       <h3 className="lg:text-3xl text-xl font-semibold">
@@ -281,7 +281,7 @@ const Task = () => {
                               </div>
                               <div className="grid grid-cols-2">
                                 <div>
-                                  {item.status !== 'to-do' ? (
+                                  {/* {item.status !== 'to-do' ? (
                                     <button
                                       onClick={() => handleOngoing(item._id)}
                                       className="btn"
@@ -290,8 +290,8 @@ const Task = () => {
                                     </button>
                                   ) : (
                                     ''
-                                  )}
-                                  {/* <h3 className="text-white">{item.status}</h3> */}
+                                  )} */}
+                                  <h3 className="text-white">{item.status}</h3>
                                   <h3 className="text-white">
                                     {item.deadlines}
                                   </h3>

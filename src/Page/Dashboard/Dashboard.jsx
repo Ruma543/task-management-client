@@ -72,7 +72,7 @@ const Dashboard = () => {
         </button>
       </div>
       <div className="h-screen w-4/5 lg:w-11/12 mx-auto px-1  lg:p-7">
-        <div className="grid lg:grid-cols-2 grid-cols-1">
+        <div className="flex gap-3">
           <h3 className="text-blue-900 text-2xl font-semibold">
             Hello {user.displayName}
           </h3>

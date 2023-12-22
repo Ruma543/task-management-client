@@ -113,7 +113,7 @@ const Task = () => {
   };
   return (
     <div className="w-11/12 mx-auto">
-      <h3 className="text-3xl font-semibold">
+      <h3 className="lg:text-3xl text-xl font-semibold">
         Your submitted work is {taskData.length}
       </h3>
       {/* <DragDropContext onDragEnd={handleDragEnd}> add korchi */}

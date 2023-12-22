@@ -33,8 +33,8 @@ const Login = () => {
         //   showConfirmButton: false,
         //   timer: 1500,
         // });
-
-        navigate(location.state ? location.state : '/');
+        navigate('/dashboard');
+        // navigate(location.state ? location.state : '/');
       })
       .catch(error => {
         toast.error('User added Successfully!');

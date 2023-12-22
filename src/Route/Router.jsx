@@ -65,7 +65,9 @@ const Router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/tasks/edit/${params.id}`),
+          fetch(
+            `https://task-management-server-ochre.vercel.app/tasks/edit/${params.id}`
+          ),
       },
     ],
   },

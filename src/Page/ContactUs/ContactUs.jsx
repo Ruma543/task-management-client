@@ -70,19 +70,19 @@ const ContactUs = () => {
           </h3>
           <label className="text-xl font-semibold">Name</label>
           <input
-            className="w-full px-4 py-2 rounded-lg outline-none bg-white"
+            className="w-full px-4 py-2  text-black rounded-lg outline-none bg-white"
             type="text"
             name="users_name"
           />
           <label className="text-xl font-semibold">Email</label>
           <input
-            className="w-full px-4 py-2 rounded-lg outline-none bg-white"
+            className="w-full px-4 py-2 text-black rounded-lg outline-none bg-white"
             type="email"
             name="users_email"
           />
           <label className="text-xl font-semibold">Message</label>
           <textarea
-            className="w-full px-4 py-2 rounded-lg outline-none bg-white"
+            className="w-full text-black px-4 py-2 rounded-lg outline-none bg-white"
             name="message"
           />
           <input className="btn btn-primary my-4" type="submit" value="Send" />

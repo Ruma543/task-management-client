@@ -5,6 +5,7 @@ import { FaArrowLeft } from 'react-icons/fa6';
 import { FcApproval } from 'react-icons/fc';
 import UserMenu from '../../Menu/UserMenu';
 import Swal from 'sweetalert2';
+import toast from 'react-hot-toast';
 
 const Dashboard = () => {
   const { user, logOut } = useAuth();
@@ -14,20 +15,22 @@ const Dashboard = () => {
   const handleLogOut = () => {
     logOut()
       .then(() => {
-        Swal.fire({
-          icon: 'success',
-          title: 'User Logout successfully',
-          showConfirmButton: true,
-        });
+        toast.success('User logout Successfully!');
+        // Swal.fire({
+        //   icon: 'success',
+        //   title: 'User Logout successfully',
+        //   showConfirmButton: true,
+        // });
 
         navigate('/');
       })
       .catch(error => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Something went wrong',
-          showConfirmButton: true,
-        });
+        toast.error('something went wrong!');
+        // Swal.fire({
+        //   icon: 'error',
+        //   title: 'Something went wrong',
+        //   showConfirmButton: true,
+        // });
         return;
       });
   };
@@ -61,7 +64,10 @@ const Dashboard = () => {
           </h1>
         </div>
         {user ? <UserMenu open={open}></UserMenu> : ''}
-        <button className="text-white btn btn-primary" onClick={handleLogOut}>
+        <button
+          className="text-white bg-blue-800 lg:px-3 lg:py-2 px-1 py-1 rounded-lg"
+          onClick={handleLogOut}
+        >
           Logout
         </button>
       </div>

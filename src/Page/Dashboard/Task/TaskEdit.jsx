@@ -41,11 +41,12 @@ const TaskEdit = () => {
       })
       .catch(error => {
         console.error('An error occurred:', error);
-        Swal.fire({
-          icon: 'error',
-          title: 'Something wrong',
-          showConfirmButton: true,
-        });
+        toast.error('Something went wrong!');
+        // Swal.fire({
+        //   icon: 'error',
+        //   title: 'Something wrong',
+        //   showConfirmButton: true,
+        // });
       });
   };
   return (

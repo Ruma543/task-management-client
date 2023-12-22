@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import useAxiosPublic from '../../Hook/useAxiosPublic';
 import Swal from 'sweetalert2';
+import toast from 'react-hot-toast';
 
 // const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_API;
 // const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -46,14 +47,15 @@ const Registration = () => {
           axiosPublic.post('/users', userInfo).then(res => {
             if (res.data.insertedId) {
               reset();
+              toast.success('User added Successfully!');
               // return alert('added successfuly');
-              Swal.fire({
-                position: 'middle-end',
-                icon: 'success',
-                title: 'User add successfully',
-                showConfirmButton: false,
-                timer: 1500,
-              });
+              // Swal.fire({
+              //   position: 'middle-end',
+              //   icon: 'success',
+              //   title: 'User add successfully',
+              //   showConfirmButton: false,
+              //   timer: 1500,
+              // });
               navigate('/');
             }
           });
@@ -61,11 +63,12 @@ const Registration = () => {
       })
       .catch(error => {
         console.log(error);
-        Swal.fire({
-          icon: 'error',
-          title: 'user Information  is missing!',
-          showConfirmButton: true,
-        });
+        toast.error('Something went wrong!');
+        // Swal.fire({
+        //   icon: 'error',
+        //   title: 'user Information  is missing!',
+        //   showConfirmButton: true,
+        // });
       });
   };
   return (

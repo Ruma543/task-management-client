@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import GoogleLogin from './GoogleLogin';
 import Swal from 'sweetalert2';
 import img from '../../assets/login.jpg';
+import toast from 'react-hot-toast';
 
 const Login = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -24,24 +25,26 @@ const Login = () => {
         const user = result.user;
         console.log(user);
         reset();
-        Swal.fire({
-          position: 'middle-end',
-          icon: 'success',
-          title: 'user login successfully',
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        toast.success('User login Successfully!');
+        // Swal.fire({
+        //   position: 'middle-end',
+        //   icon: 'success',
+        //   title: 'user login successfully',
+        //   showConfirmButton: false,
+        //   timer: 1500,
+        // });
 
         navigate(location.state ? location.state : '/');
       })
       .catch(error => {
-        Swal.fire({
-          position: 'middle-end',
-          icon: 'error',
-          title: 'Please login with verified password',
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        toast.error('User added Successfully!');
+        // Swal.fire({
+        //   position: 'middle-end',
+        //   icon: 'error',
+        //   title: 'Please login with verified password',
+        //   showConfirmButton: false,
+        //   timer: 1500,
+        // });
       });
     console.log(data);
   };
